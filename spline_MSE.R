@@ -78,5 +78,5 @@ results_combine <- bind_rows(
 ggplot(results_combine, aes(x = gl, y = eqm, color = dataset)) +
   geom_point() +
   geom_line() +
-  labs(title = "MSE train x validation", x = "GL", y = "EQM") +
+  labs(title = "Spline MSE train x validation", x = "GL", y = "EQM") +
   theme_minimal()
