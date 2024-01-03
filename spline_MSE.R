@@ -32,7 +32,7 @@ for (i in 1:nrow(results)) {
   #ajust spline with i degrees of freedom
   fit <- smooth.spline(data$x, data$y, df = results$gl[i], all.knots = TRUE)
   
-  #calculates the EQM and hold it at results$eqm[i]
+  #calculates the MSE and hold it at results$eqm[i]
   results$eqm[i] <- mean((data$y - predict(fit, data$x)$y)^2)
 }
 
@@ -59,7 +59,7 @@ for (i in 1:nrow(results)) {
   #ajust spline with i degrees of freedom
   fit <- smooth.spline(data$x, data$y, df = results2$gl[i], all.knots = TRUE)
   
-  #calculates the EQM and hold it at results$eqm[i]
+  #calculates the MSE and hold it at results$eqm[i]
   results2$eqm[i] <- mean((validation$y - predict(fit, validation$x)$y)^2)
 }
 
@@ -78,5 +78,5 @@ results_combine <- bind_rows(
 ggplot(results_combine, aes(x = gl, y = eqm, color = dataset)) +
   geom_point() +
   geom_line() +
-  labs(title = "EQM train x validation", x = "GL", y = "EQM") +
+  labs(title = "MSE train x validation", x = "GL", y = "EQM") +
   theme_minimal()
